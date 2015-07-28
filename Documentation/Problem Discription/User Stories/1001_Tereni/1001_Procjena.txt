@@ -1,0 +1,12 @@
+MySQL Tablica Teren 				- 	15 min.
+PHP stranica za MySql Teren u JSON		-	45 min.
+SQL Lite baza podataka sa tablicm terena	-	45 min.
+Klasa za obradu JSON podataka			-	30 min.
+Klasa za spremanje podataka u SQLlite		-	30 min.
+Objekt Teren[]					-	15 min.
+Objekt punjenje iz baze SQLlite			-	15 min.
+List Fragment za Teren[]			-	30 min.
+Botun za teren					-	15 min.
+Detail fragment za odabrani teren		-	45 min.
+Total:							285 min
+Procjena (60% optereæenje)				475 min => 8h		

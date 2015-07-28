@@ -1,0 +1,2 @@
+Korisnik se prijavljuje na web formi. Nakon prijave dobija link te skida aplikaciju. Ulaz u aplikaciju je broj mobitela koji program èita automatski.
+Prijava korisnika ostaje zabilježena u bazi podataka na web serveru.

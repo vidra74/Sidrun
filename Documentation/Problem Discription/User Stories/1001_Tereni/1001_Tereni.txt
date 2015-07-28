@@ -1,0 +1,1 @@
+Korisnik odabire opciju Tereni. Otvara se novi Viw sa listom terena za natjecanje. Korisnik klikom na listu odabire teren i onda se prikaže detaljni pregled terena sa svim raspoloživim podacima. Back botun vraæa natrag na listu. Home botun vraæa natrag na poèetni pregled.
