@@ -28,6 +28,7 @@ CHANGELOG
 
 28.07.2015: Application launcher icon changed.
 	MySQL table STADION.
+	PHP script with JSON array response.
 27.07.2015: GitHub repository created
 
 BUGS	
