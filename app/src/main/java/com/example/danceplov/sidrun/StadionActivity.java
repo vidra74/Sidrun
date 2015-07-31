@@ -1,5 +1,9 @@
 package com.example.danceplov.sidrun;
 
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +19,15 @@ public class StadionActivity extends ActionBarActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_stadion);
+
+        FragmentManager fragMag = getSupportFragmentManager();
+        Fragment frag = fragMag.findFragmentById(R.id.fragment_stadium);
+
+        if (null == frag){
+            frag = new StadionActivityFragment();
+            fragMag.beginTransaction().add(R.id.fragment_stadium, frag).commit();
+        }
+
     }
 
 

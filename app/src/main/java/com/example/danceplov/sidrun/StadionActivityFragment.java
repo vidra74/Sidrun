@@ -12,6 +12,14 @@ import android.view.ViewGroup;
  */
 public class StadionActivityFragment extends Fragment {
 
+    public Stadium mStadium;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mStadium = new Stadium();
+    }
+
     public StadionActivityFragment() {
     }
 

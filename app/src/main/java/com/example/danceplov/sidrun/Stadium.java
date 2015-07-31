@@ -71,7 +71,7 @@ public class Stadium {
         this.mStadiumLatitude = mStadiumLatitude;
     }
 
-    public UUID getmId() {
+    public UUID getId() {
         return mId;
     }
 
