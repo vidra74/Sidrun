@@ -12,9 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-
-import com.example.danceplov.sidrun.dummy.DummyContent;
-
 import java.util.ArrayList;
 
 /**
@@ -49,6 +46,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
      * Views.
      */
     private ListAdapter mAdapter;
+    ArrayList<Stadium> stadList;
 
     // TODO: Rename and change types of parameters
     public static StadiumListFragment newInstance(String param1, String param2) {
@@ -79,7 +77,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         }
 
         // TODO: Change Adapter to display your content
-        ArrayList<Stadium> stadList = StadiumList.getsStadiumList(getActivity()).getStadiums();
+        stadList = StadiumList.getsStadiumList(getActivity()).getStadiums();
         mAdapter = new ArrayAdapter<Stadium>(getActivity(),
                                                 android.R.layout.simple_list_item_1,
                                                 android.R.id.text1,
@@ -125,7 +123,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            mListener.onFragmentInteraction(stadList.get(position).getmStadiumName());
         }
     }
 
