@@ -8,9 +8,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
-public class StadionActivity extends ActionBarActivity {
+public class StadionActivity extends ActionBarActivity
+    implements StadiumListFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class StadionActivity extends ActionBarActivity {
         Fragment frag = fragMag.findFragmentById(R.id.fragment_stadium);
 
         if (null == frag){
-            frag = new StadionActivityFragment();
+            frag = new StadiumListFragment();
             fragMag.beginTransaction().add(R.id.fragment_stadium, frag).commit();
         }
 
@@ -51,5 +53,10 @@ public class StadionActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
+        Toast.makeText(this, "Vrijednost onFragmentInteraction " + id, Toast.LENGTH_SHORT).show();
     }
 }

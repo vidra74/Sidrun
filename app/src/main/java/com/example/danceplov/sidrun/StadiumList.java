@@ -29,6 +29,16 @@ public class StadiumList {
 
         mContext = Context;
         mStadiums = new ArrayList<Stadium>();
+
+        Stadium stad1 = new Stadium("Porporela", "Hrvatska", "Dubrovnik", "Porat bb", "Nose valovi po jugu", 0.0, 0.0);
+        Stadium stad2 = new Stadium("Porat", "Hrvatska", "Dubrovnik", "Porat bb", "Prljavo, makni barke", 0.0, 0.0);
+        Stadium stad3 = new Stadium("Kolorina", "Hrvatska", "Dubrovnik", "Od Tabakerije bb", "Hlad u 17, pazi kod juga", 0.0, 0.0);
+        Stadium stad4 = new Stadium("Danche", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
+        mStadiums.add(stad1);
+        mStadiums.add(stad2);
+        mStadiums.add(stad3);
+        mStadiums.add(stad4);
+
     }
 
     public Stadium getStadium(UUID StadiumID){
@@ -38,4 +48,5 @@ public class StadiumList {
         }
         return null;
     }
+
 }

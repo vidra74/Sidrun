@@ -75,7 +75,7 @@ public class Stadium {
         return mId;
     }
 
-    public void Stadium(String Name, String Country, String City, String Address, String Comment, Double Longitude, Double Latitude){
+    Stadium(String Name, String Country, String City, String Address, String Comment, Double Longitude, Double Latitude){
         mStadiumName = Name;
         mStadiumCountry = Country;
         mStadiumCity = City;
@@ -87,7 +87,7 @@ public class Stadium {
 
     }
 
-    public void Stadium(){
+    Stadium(){
         mStadiumName = "";
         mStadiumCountry = "";
         mStadiumCity = "";
@@ -96,5 +96,9 @@ public class Stadium {
         mStadiumLongitude = 0.0;
         mStadiumLatitude = 0.0;
         mId = UUID.randomUUID();
+    }
+
+    public String toString() {
+        return getmStadiumName() + ", " + getmStadiumCity();
     }
 }
