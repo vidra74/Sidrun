@@ -1,9 +1,12 @@
 package com.example.danceplov.sidrun;
 
+import java.util.UUID;
+
 /**
  * Created by Korisnik on 31.7.2015..
  */
 public class Stadium {
+    private UUID mId;
     public String mStadiumName;
     public String mStadiumCountry;
     public String mStadiumCity;
@@ -68,6 +71,10 @@ public class Stadium {
         this.mStadiumLatitude = mStadiumLatitude;
     }
 
+    public UUID getmId() {
+        return mId;
+    }
+
     public void Stadium(String Name, String Country, String City, String Address, String Comment, Double Longitude, Double Latitude){
         mStadiumName = Name;
         mStadiumCountry = Country;
@@ -76,6 +83,7 @@ public class Stadium {
         mStadiumComment = Comment;
         mStadiumLongitude = Longitude;
         mStadiumLatitude = Latitude;
+        mId = UUID.randomUUID();
 
     }
 
@@ -87,5 +95,6 @@ public class Stadium {
         mStadiumComment = "";
         mStadiumLongitude = 0.0;
         mStadiumLatitude = 0.0;
+        mId = UUID.randomUUID();
     }
 }

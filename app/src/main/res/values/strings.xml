@@ -2,11 +2,11 @@
     <string name="app_name">Sidrun</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_stadion">Stadium / Playground</string>
-    <string name="stadium">Stadium Name : %1%s</string>
-    <string name="stadium_country">Country : %1%s</string>
-    <string name="stadium_city">City : %1%s</string>
-    <string name="stadium_address">Address : %1%s</string>
-    <string name="stadium_longitude">Longitude : %1%s</string>
-    <string name="stadium_latitude">Latitude : %1%s</string>
-    <string name="stadium_comment">Comment : %1%s</string>
+    <string name="stadium">Stadium Name : %1$s</string>
+    <string name="stadium_country">Country : %1$s</string>
+    <string name="stadium_city">City : %1$s</string>
+    <string name="stadium_address">Address : %1$s</string>
+    <string name="stadium_longitude">Longitude : %1$d</string>
+    <string name="stadium_latitude">Latitude : %1$d</string>
+    <string name="stadium_comment">Comment : %1$s</string>
 </resources>
