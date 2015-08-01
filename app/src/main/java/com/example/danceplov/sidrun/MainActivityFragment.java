@@ -37,8 +37,8 @@ public class MainActivityFragment extends Fragment {
         mStadioniButton.setOnClickListener(new ImageButton.OnClickListener() {
                @Override
                public void onClick(View arg0) {
-                   Intent browserIntent = new Intent(getActivity(), StadionActivity.class);
-                   startActivity(browserIntent);
+                   Intent stadiumListIntent = new Intent(getActivity(), StadionActivity.class);
+                   startActivity(stadiumListIntent);
                }
            }
         );

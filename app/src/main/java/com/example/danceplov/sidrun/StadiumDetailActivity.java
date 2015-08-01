@@ -1,44 +1,39 @@
 package com.example.danceplov.sidrun;
 
-
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-
-import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
 
-public class StadionActivity extends ActionBarActivity
-    implements StadiumListFragment.OnFragmentInteractionListener {
+public class StadiumDetailActivity extends ActionBarActivity {
+
+    String mStadionName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        setContentView(R.layout.activity_stadion);
+        setContentView(R.layout.activity_stadium_detail);
+        mStadionName = getIntent().getStringExtra("Stadion");
+        TextView tv = (TextView)findViewById(R.id.StadionName);
+        tv.setText(mStadionName);
 
         FragmentManager fragMag = getSupportFragmentManager();
-        Fragment frag = fragMag.findFragmentById(R.id.fragment_stadium);
+        Fragment frag = fragMag.findFragmentById(R.id.stadion_detail_activity);
 
         if (null == frag){
-            StadiumListFragment slfrag = new StadiumListFragment();
-            fragMag.beginTransaction().add(R.id.fragment_stadium, slfrag).commit();
+            StadionActivityFragment slfrag = new StadionActivityFragment();
+            fragMag.beginTransaction().add(R.id.stadion_detail_activity, slfrag).commit();
         }
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_stadion, menu);
+        getMenuInflater().inflate(R.menu.menu_stadium_detail, menu);
         return true;
     }
 
@@ -55,16 +50,5 @@ public class StadionActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onFragmentInteraction(String id) {
-        Toast.makeText(this, "Vrijednost onFragmentInteraction " + id, Toast.LENGTH_SHORT).show();
-
-        Intent StadiumDetail = new Intent(this, StadiumDetailActivity.class);
-        StadiumDetail.putExtra("Stadion", id);
-        startActivity(StadiumDetail);
-
-
     }
 }

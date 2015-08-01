@@ -9,4 +9,7 @@
     <string name="stadium_longitude">Longitude : %1$d</string>
     <string name="stadium_latitude">Latitude : %1$d</string>
     <string name="stadium_comment">Comment : %1$s</string>
+    <string name="title_activity_stadium_detail">StadiumDetailActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
