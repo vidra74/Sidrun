@@ -4,6 +4,7 @@ package com.example.danceplov.sidrun;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,8 +27,8 @@ public class StadionActivity extends ActionBarActivity
         Fragment frag = fragMag.findFragmentById(R.id.fragment_stadium);
 
         if (null == frag){
-            frag = new StadiumListFragment();
-            fragMag.beginTransaction().add(R.id.fragment_stadium, frag).commit();
+            StadiumListFragment slfrag = new StadiumListFragment();
+            fragMag.beginTransaction().add(R.id.fragment_stadium, slfrag).commit();
         }
 
     }

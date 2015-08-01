@@ -1,6 +1,9 @@
 package com.example.danceplov.sidrun;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ListFragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
+
 public class StadiumListFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -46,8 +50,27 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
      * Views.
      */
     private ListAdapter mAdapter;
-    ArrayList<Stadium> stadList;
+    private class StadiumAdapter extends ArrayAdapter<Stadium> {
 
+        public StadiumAdapter(ArrayList<Stadium> stadList){
+            super(getActivity(), 0, stadList);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (null == convertView){
+                convertView = getActivity().getLayoutInflater()
+                        .inflate(android.R.layout.simple_list_item_1, null);
+            }
+
+            Stadium stad = getItem(position);
+            TextView tv = (TextView)convertView.findViewById(android.R.id.text1);
+            tv.setText(stad.getmStadiumName());
+
+            return convertView;
+        }
+    }
     // TODO: Rename and change types of parameters
     public static StadiumListFragment newInstance(String param1, String param2) {
         StadiumListFragment fragment = new StadiumListFragment();
@@ -77,11 +100,8 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         }
 
         // TODO: Change Adapter to display your content
-        stadList = StadiumList.getsStadiumList(getActivity()).getStadiums();
-        mAdapter = new ArrayAdapter<Stadium>(getActivity(),
-                                                android.R.layout.simple_list_item_1,
-                                                android.R.id.text1,
-                                                stadList);
+
+
     }
 
     @Override
@@ -91,7 +111,8 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        StadiumAdapter stadAdapter = new StadiumAdapter(StadiumList.getsStadiumList(getActivity()).getStadiums());
+        ((AdapterView<ListAdapter>) mListView).setAdapter(stadAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
@@ -123,7 +144,8 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(stadList.get(position).getmStadiumName());
+
+            mListener.onFragmentInteraction(((StadiumAdapter) mListView.getAdapter()).getItem(position).getmStadiumName());
         }
     }
 
