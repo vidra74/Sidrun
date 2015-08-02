@@ -1,14 +1,12 @@
 package com.example.danceplov.sidrun;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 
 /**
@@ -37,7 +35,7 @@ public class MainActivityFragment extends Fragment {
         mStadioniButton.setOnClickListener(new ImageButton.OnClickListener() {
                @Override
                public void onClick(View arg0) {
-                   Intent stadiumListIntent = new Intent(getActivity(), StadionActivity.class);
+                   Intent stadiumListIntent = new Intent(getActivity(), StadiumActivity.class);
                    startActivity(stadiumListIntent);
                }
            }

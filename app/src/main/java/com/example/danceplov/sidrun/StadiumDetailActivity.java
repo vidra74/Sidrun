@@ -22,11 +22,11 @@ public class StadiumDetailActivity extends ActionBarActivity {
         tv.setText(mStadionName);
 
         FragmentManager fragMag = getSupportFragmentManager();
-        Fragment frag = fragMag.findFragmentById(R.id.stadion_detail_activity);
+        Fragment frag = fragMag.findFragmentById(R.id.fragment_stadion_detail);
 
         if (null == frag){
-            StadionActivityFragment slfrag = new StadionActivityFragment();
-            fragMag.beginTransaction().add(R.id.stadion_detail_activity, slfrag).commit();
+            StadiumDetailFragment slfrag = new StadiumDetailFragment();
+            fragMag.beginTransaction().add(R.id.fragment_stadion_detail, slfrag).commit();
         }
     }
 

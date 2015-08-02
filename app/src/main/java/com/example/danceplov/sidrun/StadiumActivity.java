@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
-public class StadionActivity extends ActionBarActivity
+public class StadiumActivity extends ActionBarActivity
     implements StadiumListFragment.OnFragmentInteractionListener {
 
     @Override
@@ -22,7 +21,7 @@ public class StadionActivity extends ActionBarActivity
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        setContentView(R.layout.activity_stadion);
+        setContentView(R.layout.activity_stadium);
 
         FragmentManager fragMag = getSupportFragmentManager();
         Fragment frag = fragMag.findFragmentById(R.id.fragment_stadium);

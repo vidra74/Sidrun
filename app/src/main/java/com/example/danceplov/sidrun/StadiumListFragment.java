@@ -1,9 +1,6 @@
 package com.example.danceplov.sidrun;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ListFragment;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -49,7 +46,9 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private ListAdapter mAdapter;
+    // private ListAdapter mAdapter;
+    private StadiumAdapter stadiumAdapter;
+
     private class StadiumAdapter extends ArrayAdapter<Stadium> {
 
         public StadiumAdapter(ArrayList<Stadium> stadList){
@@ -111,8 +110,9 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
-        StadiumAdapter stadAdapter = new StadiumAdapter(StadiumList.getsStadiumList(getActivity()).getStadiums());
-        ((AdapterView<ListAdapter>) mListView).setAdapter(stadAdapter);
+
+        stadiumAdapter = new StadiumAdapter(StadiumList.getsStadiumList(getActivity()).getStadiums());
+        ((AdapterView<ListAdapter>) mListView).setAdapter(stadiumAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
