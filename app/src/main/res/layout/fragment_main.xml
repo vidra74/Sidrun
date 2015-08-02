@@ -20,8 +20,8 @@
         android:cropToPadding="false"
         android:scaleType="centerCrop"
         android:background="@android:color/transparent"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/main_select_teams"/>
 
     <ImageButton
@@ -32,8 +32,8 @@
         android:src="@drawable/sidrun2"
         android:scaleType="centerCrop"
         android:background="@android:color/transparent"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/main_select_results" />
 
     <ImageButton
@@ -45,7 +45,7 @@
         android:scaleType="centerCrop"
         android:background="@android:color/transparent"
         android:cropToPadding="false"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/main_select_stadium"/>
 </LinearLayout>
