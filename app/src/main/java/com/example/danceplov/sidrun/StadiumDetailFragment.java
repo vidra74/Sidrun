@@ -121,17 +121,13 @@ public class StadiumDetailFragment extends Fragment {
         mViewHolder.setStadiumLatitude((TextView) v.findViewById(R.id.tvStadiumLatitude));
         mViewHolder.setStadiumLongitude((TextView) v.findViewById(R.id.tvStadiumLongitude));
 
-        TextView tv = (TextView) v.findViewById(R.id.tvStadium);
-        String Name = mStadiumObject.getmStadiumName();
-        tv.setText(Name);
-
-        mViewHolder.getStadium().setText(mStadiumObject.getmStadiumName());
-        mViewHolder.getStadiumAddress().setText(mStadiumObject.getmStadiumAddress());
-        mViewHolder.getStadiumCountry().setText(mStadiumObject.getmStadiumCountry());
-        mViewHolder.getStadiumCity().setText(mStadiumObject.getmStadiumCity());
-        mViewHolder.getStadiumLongitude().setText(mStadiumObject.getmStadiumLongitude().toString());
-        mViewHolder.getStadiumLatitude().setText(mStadiumObject.getmStadiumLatitude().toString());
-        mViewHolder.getStadiumComment().setText(mStadiumObject.getmStadiumComment());
+        mViewHolder.getStadium().setText(getActivity().getString(R.string.stadium, mStadiumObject.getmStadiumName()));
+        mViewHolder.getStadiumAddress().setText(getActivity().getString(R.string.stadium_address, mStadiumObject.getmStadiumAddress()));
+        mViewHolder.getStadiumCountry().setText(getActivity().getString(R.string.stadium_country, mStadiumObject.getmStadiumCountry()));
+        mViewHolder.getStadiumCity().setText(getActivity().getString(R.string.stadium_city, mStadiumObject.getmStadiumCity()));
+        mViewHolder.getStadiumLongitude().setText(getActivity().getString(R.string.stadium_longitude, mStadiumObject.getmStadiumLongitude()));
+        mViewHolder.getStadiumLatitude().setText(getActivity().getString(R.string.stadium_latitude, mStadiumObject.getmStadiumLatitude()));
+        mViewHolder.getStadiumComment().setText(getActivity().getString(R.string.stadium_comment, mStadiumObject.getmStadiumComment()));
 
         return v;
     }

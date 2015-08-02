@@ -9,37 +9,37 @@
     android:orientation="vertical"
     tools:context="com.example.danceplov.sidrun.StadiumDetailFragment">
 
-    <TextView android:text="@string/stadium"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvStadium" />
 
-    <TextView android:text="@string/stadium_country"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvStadiumCountry" />
 
-    <TextView android:text="@string/stadium_city"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvStadiumCity" />
 
-    <TextView android:text="@string/stadium_address"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvStadiumAddress" />
 
-    <TextView android:text="@string/stadium_longitude"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvStadiumLongitude" />
 
-    <TextView android:text="@string/stadium_latitude"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvStadiumLatitude" />
 
-    <TextView android:text="@string/stadium_comment"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvStadiumComment" />
