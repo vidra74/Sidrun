@@ -1,5 +1,6 @@
 package com.example.danceplov.sidrun;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.util.UUID;
 
 
 public class StadiumDetailActivity extends ActionBarActivity {
@@ -17,9 +20,19 @@ public class StadiumDetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stadium_detail);
-        mStadionName = getIntent().getStringExtra("Stadion");
-        TextView tv = (TextView)findViewById(R.id.StadionName);
-        tv.setText(mStadionName);
+
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        if (extras != null) {
+            UUID idStadium = (UUID)i.getSerializableExtra("Stadion");
+
+            Stadium objStadium = StadiumList.getsStadiumList(this).getStadium(idStadium);
+            mStadionName = objStadium.toString();
+            TextView tv = (TextView)findViewById(R.id.StadionName);
+            tv.setText(mStadionName);
+        }
+
+
 
         FragmentManager fragMag = getSupportFragmentManager();
         Fragment frag = fragMag.findFragmentById(R.id.fragment_stadion_detail);

@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.UUID;
+
 
 public class StadiumActivity extends ActionBarActivity
     implements StadiumListFragment.OnFragmentInteractionListener {
@@ -57,8 +59,7 @@ public class StadiumActivity extends ActionBarActivity
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
-        Toast.makeText(this, "Vrijednost onFragmentInteraction " + id, Toast.LENGTH_SHORT).show();
+    public void onFragmentInteraction(UUID id) {
 
         Intent StadiumDetail = new Intent(this, StadiumDetailActivity.class);
         StadiumDetail.putExtra("Stadion", id);
