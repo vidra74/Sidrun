@@ -9,10 +9,4 @@
     android:id="@+id/fragment_stadion_detail"
     tools:context="com.example.danceplov.sidrun.StadiumDetailActivity">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:id="@+id/StadionName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </RelativeLayout>

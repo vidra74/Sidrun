@@ -14,31 +14,25 @@ import java.util.UUID;
 
 public class StadiumDetailActivity extends ActionBarActivity {
 
+    private static final String PARAM_UUID_STADIUM = "Stadium";
     String mStadionName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stadium_detail);
-
+        UUID idStadium = UUID.randomUUID();
         Intent i = getIntent();
         Bundle extras = i.getExtras();
         if (extras != null) {
-            UUID idStadium = (UUID)i.getSerializableExtra("Stadion");
-
-            StadiumObject objStadiumObject = StadiumObjectList.getsStadiumList(this).getStadium(idStadium);
-            mStadionName = objStadiumObject.toString();
-            TextView tv = (TextView)findViewById(R.id.StadionName);
-            tv.setText(mStadionName);
-        }
-
-
+            idStadium = (UUID)i.getSerializableExtra(PARAM_UUID_STADIUM);
+        } else finish();
 
         FragmentManager fragMag = getSupportFragmentManager();
         Fragment frag = fragMag.findFragmentById(R.id.fragment_stadion_detail);
 
         if (null == frag){
-            StadiumDetailFragment slfrag = new StadiumDetailFragment();
+            StadiumDetailFragment slfrag = StadiumDetailFragment.newInstance(idStadium);
             fragMag.beginTransaction().add(R.id.fragment_stadion_detail, slfrag).commit();
         }
     }

@@ -1,6 +1,8 @@
 package com.example.danceplov.sidrun;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String PARAM_UUID_STADIUM = "Stadium";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -146,7 +149,19 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
 
-            mListener.onFragmentInteraction(((StadiumAdapter) mListView.getAdapter()).getItem(position).getId());
+            // mListener.onFragmentInteraction(((StadiumAdapter) mListView.getAdapter()).getItem(position).getId());
+
+            // start Activity directly with details
+            View v = getView().findViewById(R.id.fragment_stadion_detail);
+            if (null == v){
+                Intent detailActivity = new Intent(getActivity(), StadiumDetailActivity.class);
+                StadiumObject soStadium = (StadiumObject) mListView.getAdapter().getItem(position);
+                UUID idStadium = soStadium.getId();
+                detailActivity.putExtra(PARAM_UUID_STADIUM, idStadium);
+                startActivity(detailActivity);
+            }
+
+
         }
     }
 
