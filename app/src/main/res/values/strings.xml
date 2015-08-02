@@ -2,6 +2,7 @@
     <string name="app_name">Sidrun</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_stadion">Stadium / Playground</string>
+    <!-- Stadium detail -->
     <string name="stadium">Stadium Name : %1$s</string>
     <string name="stadium_country">Country : %1$s</string>
     <string name="stadium_city">City : %1$s</string>
@@ -10,6 +11,8 @@
     <string name="stadium_latitude">Latitude : %1.0f</string>
     <string name="stadium_comment">Comment : %1$s</string>
     <string name="title_activity_stadium_detail">StadiumDetailActivity</string>
-
-    <string name="hello_world">Hello world!</string>
+    <!-- glavni izbornik -->
+    <string name="main_select_teams">timovi i igrači</string>
+    <string name="main_select_stadium">stadioni i tereni</string>
+    <string name="main_select_results">utakmice i rezultati</string>
 </resources>

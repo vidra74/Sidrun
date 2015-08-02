@@ -7,13 +7,13 @@ import java.util.UUID;
  */
 public class StadiumObject {
     private UUID mId;
-    public String mStadiumName;
-    public String mStadiumCountry;
-    public String mStadiumCity;
-    public String mStadiumAddress;
-    public String mStadiumComment;
-    public Double mStadiumLongitude;
-    public Double mStadiumLatitude;
+    private String mStadiumName;
+    private String mStadiumCountry;
+    private String mStadiumCity;
+    private String mStadiumAddress;
+    private String mStadiumComment;
+    private Double mStadiumLongitude;
+    private Double mStadiumLatitude;
 
     public String getmStadiumName() {
         return mStadiumName;

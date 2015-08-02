@@ -22,7 +22,7 @@
         android:background="@android:color/transparent"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:contentDescription="timovi i igrači"/>
+        android:contentDescription="@string/main_select_teams"/>
 
     <ImageButton
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         android:background="@android:color/transparent"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:contentDescription="utakmice i rezultati" />
+        android:contentDescription="@string/main_select_results" />
 
     <ImageButton
         android:layout_width="match_parent"
@@ -47,5 +47,5 @@
         android:cropToPadding="false"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:contentDescription="stadioni i tereni"/>
+        android:contentDescription="@string/main_select_stadium"/>
 </LinearLayout>
