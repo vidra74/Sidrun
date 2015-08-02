@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Created by Korisnik on 31.7.2015..
  */
-public class Stadium {
+public class StadiumObject {
     private UUID mId;
     public String mStadiumName;
     public String mStadiumCountry;
@@ -75,7 +75,7 @@ public class Stadium {
         return mId;
     }
 
-    Stadium(String Name, String Country, String City, String Address, String Comment, Double Longitude, Double Latitude){
+    StadiumObject(String Name, String Country, String City, String Address, String Comment, Double Longitude, Double Latitude){
         mStadiumName = Name;
         mStadiumCountry = Country;
         mStadiumCity = City;
@@ -87,7 +87,7 @@ public class Stadium {
 
     }
 
-    Stadium(){
+    StadiumObject(){
         mStadiumName = "";
         mStadiumCountry = "";
         mStadiumCity = "";

@@ -12,12 +12,12 @@ import android.view.ViewGroup;
  */
 public class StadiumDetailFragment extends Fragment {
 
-    public Stadium mStadium;
+    public StadiumObject mStadiumObject;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mStadium = new Stadium();
+        mStadiumObject = new StadiumObject();
     }
 
     public StadiumDetailFragment() {

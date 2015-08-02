@@ -50,9 +50,9 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
     // private ListAdapter mAdapter;
     private StadiumAdapter stadiumAdapter;
 
-    private class StadiumAdapter extends ArrayAdapter<Stadium> {
+    private class StadiumAdapter extends ArrayAdapter<StadiumObject> {
 
-        public StadiumAdapter(ArrayList<Stadium> stadList){
+        public StadiumAdapter(ArrayList<StadiumObject> stadList){
             super(getActivity(), 0, stadList);
         }
 
@@ -64,7 +64,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
                         .inflate(android.R.layout.simple_list_item_1, null);
             }
 
-            Stadium stad = getItem(position);
+            StadiumObject stad = getItem(position);
             TextView tv = (TextView)convertView.findViewById(android.R.id.text1);
             tv.setText(stad.getmStadiumName());
 
@@ -112,7 +112,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
 
-        stadiumAdapter = new StadiumAdapter(StadiumList.getsStadiumList(getActivity()).getStadiums());
+        stadiumAdapter = new StadiumAdapter(StadiumObjectList.getsStadiumList(getActivity()).getStadiums());
         ((AdapterView<ListAdapter>) mListView).setAdapter(stadiumAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks

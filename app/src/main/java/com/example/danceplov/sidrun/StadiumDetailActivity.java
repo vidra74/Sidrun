@@ -26,8 +26,8 @@ public class StadiumDetailActivity extends ActionBarActivity {
         if (extras != null) {
             UUID idStadium = (UUID)i.getSerializableExtra("Stadion");
 
-            Stadium objStadium = StadiumList.getsStadiumList(this).getStadium(idStadium);
-            mStadionName = objStadium.toString();
+            StadiumObject objStadiumObject = StadiumObjectList.getsStadiumList(this).getStadium(idStadium);
+            mStadionName = objStadiumObject.toString();
             TextView tv = (TextView)findViewById(R.id.StadionName);
             tv.setText(mStadionName);
         }
