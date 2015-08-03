@@ -146,14 +146,11 @@ public class StadiumDetailFragment extends Fragment {
         mViewHolder.getMbtMapView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent mapIntent =
-                        new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.howtosolvenow.com"));
-                startActivity(mapIntent);
-                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW);
                 // URI.parse("geo:" + mStadiumObject.getmStadiumLongitude().toString() + "," + mStadiumObject.getmStadiumLatitude().toString());
-                intent.setData(Uri.parse("geo:" + mStadiumObject.getmStadiumLatitude().toString() + "," + mStadiumObject.getmStadiumLongitude().toString()));
-                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivity(intent);
+                mapIntent.setData(Uri.parse("geo:" + mStadiumObject.getmStadiumLatitude().toString() + "," + mStadiumObject.getmStadiumLongitude().toString()));
+                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(mapIntent);
                 }
             }
         });
