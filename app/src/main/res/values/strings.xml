@@ -11,8 +11,9 @@
     <string name="stadium_latitude">Latitude : %1.0f</string>
     <string name="stadium_comment">Comment : %1$s</string>
     <string name="title_activity_stadium_detail">StadiumDetailActivity</string>
+    <string name="map_button">Map View</string>
     <!-- glavni izbornik -->
-    <string name="main_select_teams">timovi i igrači</string>
-    <string name="main_select_stadium">stadioni i tereni</string>
-    <string name="main_select_results">utakmice i rezultati</string>
+    <string name="main_select_teams">teams and players</string>
+    <string name="main_select_stadium">stadiums and playgrounds</string>
+    <string name="main_select_results">matches and results</string>
 </resources>

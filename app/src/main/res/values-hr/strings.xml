@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Sidrun</string>
+    <string name="action_settings">Postavke</string>
+    <string name="title_activity_stadion">Tereni</string>
+    <!-- Stadium detail -->
+    <string name="stadium">Teren : %1$s</string>
+    <string name="stadium_country">Država : %1$s</string>
+    <string name="stadium_city">Grad : %1$s</string>
+    <string name="stadium_address">Adresa : %1$s</string>
+    <string name="stadium_longitude">Longitude : %1.0f</string>
+    <string name="stadium_latitude">Latitude : %1.0f</string>
+    <string name="stadium_comment">Opis : %1$s</string>
+    <string name="title_activity_stadium_detail">Podaci o terenu</string>
+    <string name="map_button">Karta</string>
+    <!-- glavni izbornik -->
+    <string name="main_select_teams">timovi i igrači</string>
+    <string name="main_select_stadium">stadioni i tereni</string>
+    <string name="main_select_results">utakmice i rezultati</string>
+</resources>

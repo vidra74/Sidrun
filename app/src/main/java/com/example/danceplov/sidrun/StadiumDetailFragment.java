@@ -1,12 +1,16 @@
 package com.example.danceplov.sidrun;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import java.net.URI;
 import java.util.UUID;
 
 
@@ -39,6 +43,15 @@ public class StadiumDetailFragment extends Fragment {
         TextView mtvStadiumLongitude;
         TextView mtvStadiumLatitude;
         TextView mtvStadiumComment;
+        Button mbtMapView;
+
+        public Button getMbtMapView() {
+            return mbtMapView;
+        }
+
+        public void setMbtMapView(Button mbtMapView) {
+            this.mbtMapView = mbtMapView;
+        }
 
         public void ViewHolder(){};
 
@@ -120,6 +133,7 @@ public class StadiumDetailFragment extends Fragment {
         mViewHolder.setStadiumCountry((TextView) v.findViewById(R.id.tvStadiumCountry));
         mViewHolder.setStadiumLatitude((TextView) v.findViewById(R.id.tvStadiumLatitude));
         mViewHolder.setStadiumLongitude((TextView) v.findViewById(R.id.tvStadiumLongitude));
+        mViewHolder.setMbtMapView((Button) v.findViewById(R.id.buttonMap));
 
         mViewHolder.getStadium().setText(getActivity().getString(R.string.stadium, mStadiumObject.getmStadiumName()));
         mViewHolder.getStadiumAddress().setText(getActivity().getString(R.string.stadium_address, mStadiumObject.getmStadiumAddress()));
@@ -129,6 +143,23 @@ public class StadiumDetailFragment extends Fragment {
         mViewHolder.getStadiumLatitude().setText(getActivity().getString(R.string.stadium_latitude, mStadiumObject.getmStadiumLatitude()));
         mViewHolder.getStadiumComment().setText(getActivity().getString(R.string.stadium_comment, mStadiumObject.getmStadiumComment()));
 
+        mViewHolder.getMbtMapView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent mapIntent =
+                        new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.howtosolvenow.com"));
+                startActivity(mapIntent);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                // URI.parse("geo:" + mStadiumObject.getmStadiumLongitude().toString() + "," + mStadiumObject.getmStadiumLatitude().toString());
+                intent.setData(Uri.parse("geo:" + mStadiumObject.getmStadiumLatitude().toString() + "," + mStadiumObject.getmStadiumLongitude().toString()));
+                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
+
         return v;
     }
+
+
 }
