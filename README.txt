@@ -6,15 +6,15 @@ User of Sidrun application is organizer or participant of event. Appliaction pro
 
 AUTHORS	
 
-Frano Janèiæ - vidra74@gmail.com
+Frano Janï¿½iï¿½ - vidra74@gmail.com
 
 THANKS	
 
-Andrija Martiæ
+Andrija Martiï¿½
 
 NEWS	
 
-28.07.2015: New launcher icon for application is Danèe coat of arms.
+28.07.2015: New launcher icon for application is Danï¿½e coat of arms.
 
 INSTALL	
 
@@ -30,8 +30,8 @@ CHANGELOG
 03.08.2015: Croatian translation
 	Map view intent for stadium longitude & latitude
 02.08.2015: Change of visual layout
-01.08.2015: 
-31.07.2015: Detail stadium activity
+01.08.2015: Detail stadium activity
+31.07.2015: Stadium object and Stadium array list
 30.07.2015: Stadium activity with fragment and lists
 29.07.2015: Main Activity setup
 28.07.2015: Application launcher icon changed.
