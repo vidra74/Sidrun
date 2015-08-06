@@ -33,7 +33,7 @@ public class StadiumObjectList {
         StadiumObject stad1 = new StadiumObject("Porporela", "Hrvatska", "Dubrovnik", "Porat bb", "Nose valovi po jugu", 0.0, 0.0);
         StadiumObject stad2 = new StadiumObject("Porat", "Hrvatska", "Dubrovnik", "Porat bb", "Prljavo, makni barke", 0.0, 0.0);
         StadiumObject stad3 = new StadiumObject("Kolorina", "Hrvatska", "Dubrovnik", "Od Tabakerije bb", "Hlad u 17, pazi kod juga", 0.0, 0.0);
-        StadiumObject stad4 = new StadiumObject("Danche", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
+        StadiumObject stad4 = new StadiumObject("Danèe", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
         mStadiumObjects.add(stad1);
         mStadiumObjects.add(stad2);
         mStadiumObjects.add(stad3);
