@@ -15,6 +15,7 @@ import java.util.UUID;
 public class StadiumDetailActivity extends ActionBarActivity {
 
     private static final String PARAM_UUID_STADIUM = "Stadium";
+    private static final String PARAM_ROW_ID_STADIUM = "RowID";
     String mStadionName;
 
     @Override
@@ -22,17 +23,19 @@ public class StadiumDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stadium_detail);
         UUID idStadium = UUID.randomUUID();
+        long rowId = 0;
         Intent i = getIntent();
         Bundle extras = i.getExtras();
         if (extras != null) {
             idStadium = (UUID)i.getSerializableExtra(PARAM_UUID_STADIUM);
+            rowId = (long)i.getSerializableExtra(PARAM_ROW_ID_STADIUM);
         } else finish();
 
         FragmentManager fragMag = getSupportFragmentManager();
         Fragment frag = fragMag.findFragmentById(R.id.fragment_stadion_detail);
 
         if (null == frag){
-            StadiumDetailFragment slfrag = StadiumDetailFragment.newInstance(idStadium);
+            StadiumDetailFragment slfrag = StadiumDetailFragment.newInstance(idStadium, rowId);
             fragMag.beginTransaction().add(R.id.fragment_stadion_detail, slfrag).commit();
         }
     }

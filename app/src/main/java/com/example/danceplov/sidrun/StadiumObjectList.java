@@ -53,4 +53,12 @@ public class StadiumObjectList {
         return null;
     }
 
+    public StadiumObject getStadiumByRowId(long StadiumID){
+        for (StadiumObject s : mStadiumObjects) {
+            if (s.getmStadiumDBId() == StadiumID)
+                return s;
+        }
+        return null;
+    }
+
 }

@@ -40,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
                 myCursor.moveToNext();
             }
         }
-
+        myCursor.close();
         dbStadium.close();
     }
 

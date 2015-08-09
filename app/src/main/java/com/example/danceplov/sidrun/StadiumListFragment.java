@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -35,6 +38,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String PARAM_UUID_STADIUM = "Stadium";
+    private static final String PARAM_ROW_ID_STADIUM = "RowID";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -53,7 +57,8 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
      */
     // private ListAdapter mAdapter;
     private StadiumAdapter stadiumAdapter;
-    private DBAdapter dbStadium;
+    private SimpleCursorAdapter curStadiumAdapter;
+    private DBAdapter dbAdapter;
 
     private class StadiumAdapter extends ArrayAdapter<StadiumObject> {
 
@@ -117,8 +122,34 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         mListView = (AbsListView) view.findViewById(android.R.id.list);
 
         stadiumAdapter = new StadiumAdapter(StadiumObjectList.getsStadiumList(getActivity()).getStadiums());
-        ((AdapterView<ListAdapter>) mListView).setAdapter(stadiumAdapter);
 
+        dbAdapter = new DBAdapter(getActivity());
+        dbAdapter.open();
+
+        ArrayList<StadiumObject> listaStadiona = new ArrayList<StadiumObject>();
+        Cursor myCursor = dbAdapter.getStadiums();
+        myCursor.moveToFirst();
+        while (!myCursor.isAfterLast()) {
+            StadiumObject stadion = new StadiumObject(myCursor.getString(1),
+                                                        myCursor.getString(2),
+                                                        myCursor.getString(3),
+                                                        myCursor.getString(4),
+                                                        myCursor.getString(5),
+                                                        myCursor.getDouble(6),
+                                                        myCursor.getDouble(7),
+                                                        myCursor.getLong(0));
+            listaStadiona.add(stadion);
+            myCursor.moveToNext();
+        }
+        // make sure to close the cursor
+        myCursor.close();
+
+        dbAdapter.close();
+
+
+
+        // ((AdapterView<ListAdapter>) mListView).setAdapter(stadiumAdapter);
+        ((AdapterView<ListAdapter>) mListView).setAdapter(new StadiumAdapter(listaStadiona));
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
 
@@ -158,7 +189,9 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
                 Intent detailActivity = new Intent(getActivity(), StadiumDetailActivity.class);
                 StadiumObject soStadium = (StadiumObject) mListView.getAdapter().getItem(position);
                 UUID idStadium = soStadium.getId();
+                long idRow = soStadium.getmStadiumDBId();
                 detailActivity.putExtra(PARAM_UUID_STADIUM, idStadium);
+                detailActivity.putExtra(PARAM_ROW_ID_STADIUM, idRow);
                 startActivity(detailActivity);
             }
 

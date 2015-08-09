@@ -20,6 +20,7 @@ import java.util.UUID;
 public class StadiumDetailFragment extends Fragment {
 
     private static final String PARAM_UUID_STADIUM = "Stadium";
+    private static final String PARAM_ROW_ID_STADIUM = "RowID";
 
     public StadiumObject mStadiumObject;
     private ViewHolder mViewHolder;
@@ -29,7 +30,11 @@ public class StadiumDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         UUID idStadium = (UUID)getArguments().getSerializable(PARAM_UUID_STADIUM);
+        long rowId = (long)getArguments().getSerializable(PARAM_ROW_ID_STADIUM);
         mStadiumObject = StadiumObjectList.getsStadiumList(getActivity()).getStadium(idStadium);
+        if (mStadiumObject == null){
+            mStadiumObject = StadiumObjectList.getsStadiumList(getActivity()).getStadiumByRowId(rowId);
+        }
     }
 
     public StadiumDetailFragment() {
@@ -112,10 +117,11 @@ public class StadiumDetailFragment extends Fragment {
         }
     }
 
-    public static StadiumDetailFragment newInstance(UUID uuidStadium) {
+    public static StadiumDetailFragment newInstance(UUID uuidStadium, long rowId) {
         StadiumDetailFragment fragment = new StadiumDetailFragment();
         Bundle args = new Bundle();
         args.putSerializable(PARAM_UUID_STADIUM, uuidStadium);
+        args.putSerializable(PARAM_ROW_ID_STADIUM, rowId);
         fragment.setArguments(args);
         return fragment;
     }
