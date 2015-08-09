@@ -38,9 +38,10 @@ public class StadiumObjectList {
                             String stadium_address,
                             String comment,
                             Double stadium_longitude,
-                            Double stadium_latitude){
+                            Double stadium_latitude,
+                            long stadium_row_id){
 
-        StadiumObject stad1 = new StadiumObject(stadium, stadium_country, stadium_city, stadium_address, comment, stadium_longitude, stadium_latitude);
+        StadiumObject stad1 = new StadiumObject(stadium, stadium_country, stadium_city, stadium_address, comment, stadium_longitude, stadium_latitude, stadium_row_id);
         mStadiumObjects.add(stad1);
     }
 

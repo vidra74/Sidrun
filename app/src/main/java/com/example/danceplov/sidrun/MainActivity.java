@@ -35,7 +35,8 @@ public class MainActivity extends ActionBarActivity {
                         myCursor.getString(4),
                         myCursor.getString(5),
                         myCursor.getDouble(6),
-                        myCursor.getDouble(7));
+                        myCursor.getDouble(7),
+                        myCursor.getLong(0));
                 myCursor.moveToNext();
             }
         }

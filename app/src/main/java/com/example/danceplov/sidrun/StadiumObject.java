@@ -14,6 +14,15 @@ public class StadiumObject {
     private String mStadiumComment;
     private Double mStadiumLongitude;
     private Double mStadiumLatitude;
+    private long mStadiumDBId;
+
+    public long getmStadiumDBId() {
+        return mStadiumDBId;
+    }
+
+    public void setmStadiumDBId(long mStadiumDBId) {
+        this.mStadiumDBId = mStadiumDBId;
+    }
 
     public String getmStadiumName() {
         return mStadiumName;
@@ -75,7 +84,8 @@ public class StadiumObject {
         return mId;
     }
 
-    StadiumObject(String Name, String Country, String City, String Address, String Comment, Double Longitude, Double Latitude){
+    StadiumObject(String Name, String Country, String City, String Address, String Comment, Double Longitude, Double Latitude, long RowID){
+
         mStadiumName = Name;
         mStadiumCountry = Country;
         mStadiumCity = City;
@@ -84,6 +94,7 @@ public class StadiumObject {
         mStadiumLongitude = Longitude;
         mStadiumLatitude = Latitude;
         mId = UUID.randomUUID();
+        mStadiumDBId = RowID;
 
     }
 
@@ -96,6 +107,7 @@ public class StadiumObject {
         mStadiumLongitude = 0.0;
         mStadiumLatitude = 0.0;
         mId = UUID.randomUUID();
+        mStadiumDBId = -1;
     }
 
     public String toString() {
