@@ -30,15 +30,18 @@ public class StadiumObjectList {
         mContext = Context;
         mStadiumObjects = new ArrayList<StadiumObject>();
 
-        StadiumObject stad1 = new StadiumObject("Porporela", "Hrvatska", "Dubrovnik", "Porat bb", "Nose valovi po jugu", 0.0, 0.0);
-        StadiumObject stad2 = new StadiumObject("Porat", "Hrvatska", "Dubrovnik", "Porat bb", "Prljavo, makni barke", 0.0, 0.0);
-        StadiumObject stad3 = new StadiumObject("Kolorina", "Hrvatska", "Dubrovnik", "Od Tabakerije bb", "Hlad u 17, pazi kod juga", 0.0, 0.0);
-        StadiumObject stad4 = new StadiumObject("Danèe", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
-        mStadiumObjects.add(stad1);
-        mStadiumObjects.add(stad2);
-        mStadiumObjects.add(stad3);
-        mStadiumObjects.add(stad4);
+    }
 
+    public void addStadium(String stadium,
+                            String stadium_country,
+                            String stadium_city,
+                            String stadium_address,
+                            String comment,
+                            Double stadium_longitude,
+                            Double stadium_latitude){
+
+        StadiumObject stad1 = new StadiumObject(stadium, stadium_country, stadium_city, stadium_address, comment, stadium_longitude, stadium_latitude);
+        mStadiumObjects.add(stad1);
     }
 
     public StadiumObject getStadium(UUID StadiumID){

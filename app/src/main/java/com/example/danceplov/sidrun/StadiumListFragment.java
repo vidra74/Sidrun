@@ -3,6 +3,7 @@ package com.example.danceplov.sidrun;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
      */
     // private ListAdapter mAdapter;
     private StadiumAdapter stadiumAdapter;
+    private DBAdapter dbStadium;
 
     private class StadiumAdapter extends ArrayAdapter<StadiumObject> {
 
@@ -103,7 +105,6 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         }
 
         // TODO: Change Adapter to display your content
-
 
     }
 
