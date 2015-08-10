@@ -18,23 +18,31 @@
         </activity>
         <activity
             android:name=".StadiumActivity"
-            android:label="@string/title_activity_stadion">
+            android:label="@string/title_activity_stadion" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.danceplov.sidrun.MainActivity" />
         </activity>
         <activity
             android:name=".StadiumDetailActivity"
-            android:label="@string/title_activity_stadium_detail">
+            android:label="@string/title_activity_stadium_detail" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <data android:scheme="geo" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.danceplov.sidrun.MainActivity" />
         </activity>
+
+        <service
+            android:name=".service.StadiumService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
