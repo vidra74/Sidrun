@@ -1,10 +1,13 @@
 package com.example.danceplov.sidrun;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.danceplov.sidrun.service.StadiumService;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -42,6 +45,12 @@ public class MainActivity extends ActionBarActivity {
         }
         myCursor.close();
         dbStadium.close();
+
+        Intent msgIntent = new Intent(this, StadiumService.class);
+        msgIntent.setAction(StadiumService.ACTION_FOO);
+        msgIntent.putExtra(StadiumService.EXTRA_PARAM1, "Stadium service started");
+        msgIntent.putExtra(StadiumService.EXTRA_PARAM2, "FOO");
+        startService(msgIntent);
     }
 
 

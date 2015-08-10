@@ -3,6 +3,9 @@ package com.example.danceplov.sidrun.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.os.SystemClock;
+import android.text.format.DateFormat;
+import android.widget.Toast;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -14,12 +17,12 @@ import android.content.Context;
 public class StadiumService extends IntentService {
     // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "com.example.danceplov.sidrun.service.action.FOO";
-    private static final String ACTION_BAZ = "com.example.danceplov.sidrun.service.action.BAZ";
+    public static final String ACTION_FOO = "com.example.danceplov.sidrun.service.action.FOO";
+    public static final String ACTION_BAZ = "com.example.danceplov.sidrun.service.action.BAZ";
 
     // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "com.example.danceplov.sidrun.service.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "com.example.danceplov.sidrun.service.extra.PARAM2";
+    public static final String EXTRA_PARAM1 = "com.example.danceplov.sidrun.service.extra.PARAM1";
+    public static final String EXTRA_PARAM2 = "com.example.danceplov.sidrun.service.extra.PARAM2";
 
     /**
      * Starts this service to perform action Foo with the given parameters. If
@@ -77,7 +80,14 @@ public class StadiumService extends IntentService {
      */
     private void handleActionFoo(String param1, String param2) {
         // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
+
+
+        SystemClock.sleep(30000); // 30 seconds, pretend to do work
+
+
+        Toast.makeText(getApplicationContext(), "handleActionFoo " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()), Toast.LENGTH_LONG)
+                .show();
+
     }
 
     /**
@@ -86,6 +96,10 @@ public class StadiumService extends IntentService {
      */
     private void handleActionBaz(String param1, String param2) {
         // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
+        SystemClock.sleep(30000); // 30 seconds, pretend to do work
+
+
+        Toast.makeText(getApplicationContext(), "handleActionBaz " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()), Toast.LENGTH_LONG)
+                .show();
     }
 }
