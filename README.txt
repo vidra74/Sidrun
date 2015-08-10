@@ -26,6 +26,7 @@ Copyright and licensing information
 
 CHANGELOG	
 
+09.08.2015: DBAdapter class
 04.08.2015: New working enviroment setup
 03.08.2015: Croatian translation
 	Map view intent for stadium longitude & latitude
