@@ -6,6 +6,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,9 +25,11 @@ public class JsonParser {
 
     static InputStream is = null;
     static JSONObject jObj = null;
+
+    static JSONArray jArr = null;
     static String json = "";
 
-    public JSONObject getJSONFromUrl(String url) {
+    public String getJSONFromUrl(String url) {
 
         // make HTTP request
         try {
@@ -63,12 +66,14 @@ public class JsonParser {
 
         // try parse the string to a JSON object
         try {
-            jObj = new JSONObject(json);
+            // jObj = new JSONObject(json);
+            jArr = new JSONArray(json);
+
         } catch (JSONException e) {
             Log.e(TAG, "Error parsing data " + e.toString());
         }
 
         // return JSON String
-        return jObj;
+        return json;
     }
 }

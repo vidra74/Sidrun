@@ -97,10 +97,10 @@ public class StadiumService extends IntentService {
             JsonParser jParser = new JsonParser();
 
             // get json string from url
-            JSONObject json = jParser.getJSONFromUrl(yourJsonStringUrl);
+            String json = jParser.getJSONFromUrl(yourJsonStringUrl);
 
             // get the array of users
-            dataJsonArr = json.getJSONArray("");
+            dataJsonArr = new JSONArray(json);
 
             // loop through all users
             for (int i = 0; i < dataJsonArr.length(); i++) {
@@ -108,14 +108,24 @@ public class StadiumService extends IntentService {
                 JSONObject c = dataJsonArr.getJSONObject(i);
 
                 // Storing each json item in variable
-                String firstname = c.getString("id");
-                String lastname = c.getString("naziv");
-                String username = c.getString("kometar");
+                String id = c.getString("ID");
+                String naziv = c.getString("NAZIV");
+                String komentar = c.getString("KOMENTAR");
+                String adresa = c.getString("ADRESA");
+                String grad = c.getString("GRAD");
+                String drzava = c.getString("DRZAVA");
+                String longitude = c.getString("LONGITUDE");
+                String latitude = c.getString("LATITUDE");
 
                 // show the values in our logcat
-                Log.e(TAG, "id: " + firstname
-                        + ", naziv: " + lastname
-                        + ", komentar: " + username);
+                Log.e(TAG, "id: " + id
+                        + ", naziv: " + naziv
+                        + ", adresa: " + adresa
+                        + ", grad: " + grad
+                        + ", drzava: " + drzava
+                        + ", longitude: " + longitude
+                        + ", latitude: " + latitude
+                        + ", komentar: " + komentar);
 
             }
 
