@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
         dbStadium.insertStadium("Porporela", "Hrvatska", "Dubrovnik", "Porat bb", "Nose valovi po jugu", 0.0, 0.0);
         dbStadium.insertStadium("Porat", "Hrvatska", "Dubrovnik", "Porat bb", "Prljavo, makni barke", 0.0, 0.0);
         dbStadium.insertStadium("Kolorina", "Hrvatska", "Dubrovnik", "Od Tabakerije bb", "Hlad u 17, pazi kod juga", 0.0, 0.0);
-        dbStadium.insertStadium("Danèe", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
+        dbStadium.insertStadium("Danï¿½e", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
 
         Cursor myCursor = dbStadium.getStadiums();
         if (myCursor != null){
@@ -47,9 +47,9 @@ public class MainActivity extends ActionBarActivity {
         dbStadium.close();
 
         Intent msgIntent = new Intent(this, StadiumService.class);
-        msgIntent.setAction(StadiumService.ACTION_FOO);
+        msgIntent.setAction(StadiumService.ACTION_STADIUM);
         msgIntent.putExtra(StadiumService.EXTRA_PARAM1, "Stadium service started");
-        msgIntent.putExtra(StadiumService.EXTRA_PARAM2, "FOO");
+        msgIntent.putExtra(StadiumService.EXTRA_PARAM2, "Stadium");
         startService(msgIntent);
     }
 
