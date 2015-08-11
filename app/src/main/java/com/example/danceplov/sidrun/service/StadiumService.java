@@ -8,6 +8,10 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -24,6 +28,14 @@ public class StadiumService extends IntentService {
     // TODO: Rename parameters
     public static final String EXTRA_PARAM1 = "com.example.danceplov.sidrun.service.extra.PARAM1";
     public static final String EXTRA_PARAM2 = "com.example.danceplov.sidrun.service.extra.PARAM2";
+
+    final String TAG = StadiumService.class.getSimpleName();
+
+    // set your json string url here
+    String yourJsonStringUrl = "http://www.dance.hr/sidrun/stadion.php";
+
+    // contacts JSONArray
+    JSONArray dataJsonArr = null;
 
     /**
      * Starts this service to perform action Stadium update with the given parameters. If
@@ -76,10 +88,42 @@ public class StadiumService extends IntentService {
     }
 
     private void handleActionStadium(String param1, String param2) {
-        // TODO: Handle action Foo
+        try{
 
-        Log.d(StadiumService.class.getSimpleName(), "update stadium data " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
+            Log.d(StadiumService.class.getSimpleName(), "update stadium data " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
+            // http://www.dance.hr/sidrun/stadion.php
 
+            // instantiate our json parser
+            JsonParser jParser = new JsonParser();
+
+            // get json string from url
+            JSONObject json = jParser.getJSONFromUrl(yourJsonStringUrl);
+
+            // get the array of users
+            dataJsonArr = json.getJSONArray("");
+
+            // loop through all users
+            for (int i = 0; i < dataJsonArr.length(); i++) {
+
+                JSONObject c = dataJsonArr.getJSONObject(i);
+
+                // Storing each json item in variable
+                String firstname = c.getString("id");
+                String lastname = c.getString("naziv");
+                String username = c.getString("kometar");
+
+                // show the values in our logcat
+                Log.e(TAG, "id: " + firstname
+                        + ", naziv: " + lastname
+                        + ", komentar: " + username);
+
+            }
+
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+
+        Log.d(TAG, "finished update " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
     }
 
     private void handleActionTeam(String param1, String param2) {
