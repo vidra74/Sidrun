@@ -61,4 +61,8 @@ public class StadiumObjectList {
         return null;
     }
 
+    public void clearAllStadiums(){
+        mStadiumObjects.clear();
+    }
+
 }

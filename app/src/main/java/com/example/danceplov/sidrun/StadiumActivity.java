@@ -2,6 +2,7 @@ package com.example.danceplov.sidrun;
 
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
@@ -25,6 +26,25 @@ public class StadiumActivity extends ActionBarActivity
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_stadium);
 
+        DBAdapter dbStadium = new DBAdapter(getApplicationContext());
+        Cursor myCursor = dbStadium.getStadiums();
+        if (myCursor != null){
+            myCursor.moveToFirst();
+            StadiumObjectList.getsStadiumList(this).clearAllStadiums();
+            while(!myCursor.isAfterLast()){
+                StadiumObjectList.getsStadiumList(this).addStadium(myCursor.getString(1),
+                        myCursor.getString(2),
+                        myCursor.getString(3),
+                        myCursor.getString(4),
+                        myCursor.getString(5),
+                        myCursor.getDouble(6),
+                        myCursor.getDouble(7),
+                        myCursor.getLong(0));
+                myCursor.moveToNext();
+            }
+        }
+        myCursor.close();
+        dbStadium.close();
         FragmentManager fragMag = getSupportFragmentManager();
         Fragment frag = fragMag.findFragmentById(R.id.fragment_stadium);
 
@@ -32,6 +52,8 @@ public class StadiumActivity extends ActionBarActivity
             StadiumListFragment slfrag = new StadiumListFragment();
             fragMag.beginTransaction().add(R.id.fragment_stadium, slfrag).commit();
         }
+
+
 
     }
 

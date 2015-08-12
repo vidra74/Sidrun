@@ -23,27 +23,11 @@ public class MainActivity extends ActionBarActivity {
         DBAdapter dbStadium = new DBAdapter(this);
         dbStadium.open();
         dbStadium.deleteAllStadiums();
-        dbStadium.insertStadium("Porporela", "Hrvatska", "Dubrovnik", "Porat bb", "Nose valovi po jugu", 0.0, 0.0);
-        dbStadium.insertStadium("Porat", "Hrvatska", "Dubrovnik", "Porat bb", "Prljavo, makni barke", 0.0, 0.0);
-        dbStadium.insertStadium("Kolorina", "Hrvatska", "Dubrovnik", "Od Tabakerije bb", "Hlad u 17, pazi kod juga", 0.0, 0.0);
-        dbStadium.insertStadium("Dan�e", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
+        // dbStadium.insertStadium("Porporela", "Hrvatska", "Dubrovnik", "Porat bb", "Nose valovi po jugu", 0.0, 0.0);
+        // dbStadium.insertStadium("Porat", "Hrvatska", "Dubrovnik", "Porat bb", "Prljavo, makni barke", 0.0, 0.0);
+        // dbStadium.insertStadium("Kolorina", "Hrvatska", "Dubrovnik", "Od Tabakerije bb", "Hlad u 17, pazi kod juga", 0.0, 0.0);
+        // dbStadium.insertStadium("Dan�e", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
 
-        Cursor myCursor = dbStadium.getStadiums();
-        if (myCursor != null){
-            myCursor.moveToFirst();
-            while(!myCursor.isAfterLast()){
-                StadiumObjectList.getsStadiumList(this).addStadium(myCursor.getString(1),
-                        myCursor.getString(2),
-                        myCursor.getString(3),
-                        myCursor.getString(4),
-                        myCursor.getString(5),
-                        myCursor.getDouble(6),
-                        myCursor.getDouble(7),
-                        myCursor.getLong(0));
-                myCursor.moveToNext();
-            }
-        }
-        myCursor.close();
         dbStadium.close();
 
         Intent msgIntent = new Intent(this, StadiumService.class);

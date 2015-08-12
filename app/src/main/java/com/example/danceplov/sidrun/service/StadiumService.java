@@ -8,6 +8,8 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.danceplov.sidrun.DBAdapter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,6 +90,7 @@ public class StadiumService extends IntentService {
     }
 
     private void handleActionStadium(String param1, String param2) {
+        DBAdapter dbStadium = new DBAdapter(this);
         try{
 
             Log.d(StadiumService.class.getSimpleName(), "update stadium data " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
@@ -102,7 +105,10 @@ public class StadiumService extends IntentService {
             // get the array of users
             dataJsonArr = new JSONArray(json);
 
-            // loop through all users
+
+            dbStadium.open();
+
+            // loop through all
             for (int i = 0; i < dataJsonArr.length(); i++) {
 
                 JSONObject c = dataJsonArr.getJSONObject(i);
@@ -114,8 +120,8 @@ public class StadiumService extends IntentService {
                 String adresa = c.getString("ADRESA");
                 String grad = c.getString("GRAD");
                 String drzava = c.getString("DRZAVA");
-                String longitude = c.getString("LONGITUDE");
-                String latitude = c.getString("LATITUDE");
+                Double longitude = c.getDouble("LONGITUDE");
+                Double latitude = c.getDouble("LATITUDE");
 
                 // show the values in our logcat
                 Log.e(TAG, "id: " + id
@@ -123,16 +129,18 @@ public class StadiumService extends IntentService {
                         + ", adresa: " + adresa
                         + ", grad: " + grad
                         + ", drzava: " + drzava
-                        + ", longitude: " + longitude
-                        + ", latitude: " + latitude
+                        + ", longitude: " + longitude.toString()
+                        + ", latitude: " + latitude.toString()
                         + ", komentar: " + komentar);
+
+                dbStadium.insertStadium(naziv, drzava, grad, adresa, komentar, longitude, latitude);
 
             }
 
     } catch (JSONException e) {
-        e.printStackTrace();
+            e.printStackTrace();
     }
-
+        dbStadium.close();
         Log.d(TAG, "finished update " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
     }
 
