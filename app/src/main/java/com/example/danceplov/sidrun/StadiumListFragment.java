@@ -121,13 +121,14 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
 
-        stadiumAdapter = new StadiumAdapter(StadiumObjectList.getsStadiumList(getActivity()).getStadiums());
+        // stadiumAdapter = new StadiumAdapter(StadiumObjectList.getsStadiumList(getActivity()).getStadiums());
+        StadiumObjectList.getsStadiumList(getActivity()).clearAllStadiums();
 
         dbAdapter = new DBAdapter(getActivity());
         dbAdapter.open();
 
         ArrayList<StadiumObject> listaStadiona = new ArrayList<StadiumObject>();
-        Cursor myCursor = dbAdapter.getStadiums();
+        Cursor myCursor = dbAdapter.getStadiumsCursor();
         myCursor.moveToFirst();
         while (!myCursor.isAfterLast()) {
             StadiumObject stadion = new StadiumObject(myCursor.getString(1),
@@ -139,14 +140,19 @@ public class StadiumListFragment extends Fragment implements AbsListView.OnItemC
                                                         myCursor.getDouble(7),
                                                         myCursor.getLong(0));
             listaStadiona.add(stadion);
+            StadiumObjectList.getsStadiumList(getActivity()).addStadium(stadion.getmStadiumName(),
+                    stadion.getmStadiumCountry(),
+                    stadion.getmStadiumCity(),
+                    stadion.getmStadiumAddress(),
+                    stadion.getmStadiumComment(),
+                    stadion.getmStadiumLongitude(),
+                    stadion.getmStadiumLatitude(),
+                    stadion.getmStadiumDBId());
             myCursor.moveToNext();
         }
         // make sure to close the cursor
         myCursor.close();
-
         dbAdapter.close();
-
-
 
         // ((AdapterView<ListAdapter>) mListView).setAdapter(stadiumAdapter);
         ((AdapterView<ListAdapter>) mListView).setAdapter(new StadiumAdapter(listaStadiona));

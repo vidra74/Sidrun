@@ -157,7 +157,7 @@ public class DBAdapter {
         return (db.delete(DATABASE_TABLE, null, null) > 0);
     }
 
-    public Cursor getStadiums(){
+    public Cursor getStadiumsCursor(){
 
         return db.query(DATABASE_TABLE,
                         new String[]{KEY_ROWID, KEY_STADIUM, KEY_STADIUM_COUNTRY,
@@ -170,7 +170,7 @@ public class DBAdapter {
                         null);
     }
 
-    public Cursor getStadium(long stadiumId) throws SQLException{
+    public Cursor getStadiumCursor(long stadiumId) throws SQLException{
 
         Cursor curStadium = db.query(DATABASE_TABLE,
                                         new String[]{KEY_ROWID, KEY_STADIUM, KEY_STADIUM_COUNTRY,
