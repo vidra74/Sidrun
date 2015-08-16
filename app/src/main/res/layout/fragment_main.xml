@@ -10,42 +10,53 @@
     tools:context=".MainActivityFragment"
     android:background="#ff5fbfff">
 
-
-    <ImageButton
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/ibTimovi"
-        android:src="@drawable/sidrun1"
-        android:cropToPadding="false"
-        android:scaleType="centerCrop"
         android:background="@android:color/transparent"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/main_select_teams"/>
+        android:layout_marginBottom="8dp">
 
-    <ImageButton
+        <ImageView
+            android:id="@+id/ivSidrun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sidrun1" />
+
+        <TextView
+            android:id="@+id/myImageViewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ivSidrun"
+            android:layout_alignTop="@+id/ivSidrun"
+            android:layout_alignRight="@+id/ivSidrun"
+            android:layout_alignBottom="@+id/ivSidrun"
+            android:layout_margin="1dp"
+            android:gravity="center"
+            android:text="Sidrun"
+            android:textColor="#FFFFFF"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <ImageView
+            android:id="@+id/myImageViewIcon"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_alignRight="@+id/ivSidrun"
+            android:layout_alignTop="@+id/ivSidrun"
+            android:layout_margin="1dp"
+            android:gravity="right"
+            android:layout_gravity="top"
+            android:src="@mipmap/ic_launcher"/>
+    </RelativeLayout>
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/ibRezultati"
-        android:src="@drawable/sidrun2"
-        android:scaleType="centerCrop"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/main_select_results" />
+        android:id="@+id/lvIzbornik"
+        android:layout_weight="1" >
 
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/ibStadioni"
-        android:src="@drawable/sidrun3"
-        android:scaleType="centerCrop"
-        android:background="@android:color/transparent"
-        android:cropToPadding="false"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/main_select_stadium"/>
+    </ListView>
+
+
 </LinearLayout>

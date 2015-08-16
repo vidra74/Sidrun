@@ -6,15 +6,27 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements AbsListView.OnItemClickListener{
 
-    ImageButton mStadioniButton;
+    public ListView mListViewIzbornik;
+
+    public final String[] Izbornik = {
+            "Utakmice",
+            "Rezultati",
+            "Stadion"
+    };
 
     public MainActivityFragment() {
     }
@@ -23,22 +35,43 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-/*
-        ;*/
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mStadioniButton = (ImageButton)getView().findViewById(R.id.ibStadioni);
-        mStadioniButton.setOnClickListener(new ImageButton.OnClickListener() {
-               @Override
-               public void onClick(View arg0) {
-                   Intent stadiumListIntent = new Intent(getActivity(), StadiumActivity.class);
-                   startActivity(stadiumListIntent);
-               }
-           }
-        );
+
+        mListViewIzbornik = (ListView)getView().findViewById(R.id.lvIzbornik);
+
+        mListViewIzbornik.setAdapter(new ArrayAdapter<String>(getActivity(),
+                R.layout.list_item_izbornik,
+                R.id.list_item_text,
+                Izbornik));
+
+        mListViewIzbornik.setOnItemClickListener(this);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+            case 0:
+            {
+                Toast.makeText(getActivity(), "Utakmice", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case 1:
+            {
+                Toast.makeText(getActivity(), "Rezultati", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case 2:
+            {
+                Intent stadiumListIntent = new Intent(getActivity(), StadiumActivity.class);
+                startActivity(stadiumListIntent);
+                break;
+            }
+        }
     }
 }
