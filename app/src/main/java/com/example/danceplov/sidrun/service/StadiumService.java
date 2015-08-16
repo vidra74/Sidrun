@@ -3,10 +3,8 @@ package com.example.danceplov.sidrun.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
-import android.os.SystemClock;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.danceplov.sidrun.DBAdapter;
 
@@ -25,7 +23,8 @@ public class StadiumService extends IntentService {
     // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
     public static final String ACTION_STADIUM = "com.example.danceplov.sidrun.service.action.STADIUM";
-    public static final String ACTION_TEAM = "com.example.danceplov.sidrun.service.action.TEAM";
+    public static final String ACTION_PLAYER = "com.example.danceplov.sidrun.service.action.PLAYER";
+    public static final String ACTION_GAME = "com.example.danceplov.sidrun.service.action.GAME";
 
     // TODO: Rename parameters
     public static final String EXTRA_PARAM1 = "com.example.danceplov.sidrun.service.extra.PARAM1";
@@ -34,7 +33,9 @@ public class StadiumService extends IntentService {
     final String TAG = StadiumService.class.getSimpleName();
 
     // set your json string url here
-    String yourJsonStringUrl = "http://www.dance.hr/sidrun/stadion.php";
+    String jsonStadionURL = "http://www.dance.hr/sidrun/stadion.php";
+    String jsonGameURL = "http://www.dance.hr/sidrun/utakmice.php";
+    String jsonPlayerURL = "http://www.dance.hr/sidrun/igraci.php";
 
     // contacts JSONArray
     JSONArray dataJsonArr = null;
@@ -61,9 +62,17 @@ public class StadiumService extends IntentService {
      * @see IntentService
      */
     // TODO: Customize helper method
-    public static void startActionTeam(Context context, String param1, String param2) {
+    public static void startActionGames(Context context, String param1, String param2) {
         Intent intent = new Intent(context, StadiumService.class);
-        intent.setAction(ACTION_TEAM);
+        intent.setAction(ACTION_GAME);
+        intent.putExtra(EXTRA_PARAM1, param1);
+        intent.putExtra(EXTRA_PARAM2, param2);
+        context.startService(intent);
+    }
+
+    public static void startActionPlayers(Context context, String param1, String param2) {
+        Intent intent = new Intent(context, StadiumService.class);
+        intent.setAction(ACTION_PLAYER);
         intent.putExtra(EXTRA_PARAM1, param1);
         intent.putExtra(EXTRA_PARAM2, param2);
         context.startService(intent);
@@ -81,10 +90,14 @@ public class StadiumService extends IntentService {
                 final String param1 = intent.getStringExtra(EXTRA_PARAM1);
                 final String param2 = intent.getStringExtra(EXTRA_PARAM2);
                 handleActionStadium(param1, param2);
-            } else if (ACTION_TEAM.equals(action)) {
+            } else if (ACTION_PLAYER.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_PARAM1);
                 final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionTeam(param1, param2);
+                handleActionPlayer(param1, param2);
+            } else if (ACTION_GAME.equals(action)) {
+                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
+                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
+                handleActionGame(param1, param2);
             }
         }
     }
@@ -100,7 +113,7 @@ public class StadiumService extends IntentService {
             JsonParser jParser = new JsonParser();
 
             // get json string from url
-            String json = jParser.getJSONFromUrl(yourJsonStringUrl);
+            String json = jParser.getJSONFromUrl(jsonStadionURL);
 
             // get the array of users
             dataJsonArr = new JSONArray(json);
@@ -144,8 +157,103 @@ public class StadiumService extends IntentService {
         Log.d(TAG, "finished update " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
     }
 
-    private void handleActionTeam(String param1, String param2) {
+    private void handleActionGame(String param1, String param2) {
 
-        Log.d(StadiumService.class.getSimpleName(), "update team data " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
+        DBAdapter dbStadium = new DBAdapter(this);
+        try{
+
+            Log.d(StadiumService.class.getSimpleName(), "update games data " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
+            // http://www.dance.hr/sidrun/stadion.php
+
+            // instantiate our json parser
+            JsonParser jParser = new JsonParser();
+
+            // get json string from url
+            String json = jParser.getJSONFromUrl(jsonGameURL);
+
+            // get the array of users
+            dataJsonArr = new JSONArray(json);
+
+
+            dbStadium.open();
+
+            // loop through all
+            for (int i = 0; i < dataJsonArr.length(); i++) {
+
+                JSONObject c = dataJsonArr.getJSONObject(i);
+
+                // Storing each json item in variable
+                String id = c.getString("ID");
+                String stadion = c.getString("STADION");
+                String tim1 = c.getString("TIM1");
+                String tim2 = c.getString("TIM2");
+                Double gol1 = c.getDouble("GOL1");
+                Double gol2 = c.getDouble("GOL2");
+
+                // show the values in our logcat
+                Log.e(TAG, "id: " + id
+                        + ", stadion: " + stadion
+                        + ", tim1: " + tim1
+                        + ", tim2: " + tim2
+                        + ", gol1: " + gol1.toString()
+                        + ", gol2: " + gol2.toString());
+
+                dbStadium.insertGame(stadion, tim1, tim2, gol1, gol2);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        dbStadium.close();
+        Log.d(TAG, "finished update " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
+    }
+
+    private void handleActionPlayer(String param1, String param2) {
+
+        DBAdapter dbStadium = new DBAdapter(this);
+        try{
+
+            Log.d(StadiumService.class.getSimpleName(), "update player data " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
+            // http://www.dance.hr/sidrun/stadion.php
+
+            // instantiate our json parser
+            JsonParser jParser = new JsonParser();
+
+            // get json string from url
+            String json = jParser.getJSONFromUrl(jsonPlayerURL);
+
+            // get the array of users
+            dataJsonArr = new JSONArray(json);
+
+
+            dbStadium.open();
+
+            // loop through all
+            for (int i = 0; i < dataJsonArr.length(); i++) {
+
+                JSONObject c = dataJsonArr.getJSONObject(i);
+
+                // Storing each json item in variable
+                String id = c.getString("ID");
+                String tim = c.getString("TIM");
+                String ime = c.getString("IME");
+                String prezime = c.getString("PREZIME");
+
+                // show the values in our logcat
+                Log.e(TAG, "id: " + id
+                        + ", tim: " + tim
+                        + ", ime: " + ime
+                        + ", prezime: " + prezime);
+
+                dbStadium.insertPlayer(tim, ime, prezime);
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        dbStadium.close();
+        Log.d(TAG, "finished update " + DateFormat.format("MM/dd/yy h:mmaa", System.currentTimeMillis()));
     }
 }
