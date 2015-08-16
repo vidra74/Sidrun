@@ -23,7 +23,7 @@ public class MainActivityFragment extends Fragment implements AbsListView.OnItem
     public ListView mListViewIzbornik;
 
     public final String[] Izbornik = {
-            "Utakmice",
+            "Igrači",
             "Rezultati",
             "Stadion"
     };
