@@ -30,11 +30,23 @@ public class MainActivity extends ActionBarActivity {
 
         dbStadium.close();
 
-        Intent msgIntent = new Intent(this, StadiumService.class);
-        msgIntent.setAction(StadiumService.ACTION_STADIUM);
-        msgIntent.putExtra(StadiumService.EXTRA_PARAM1, "Stadium service started");
-        msgIntent.putExtra(StadiumService.EXTRA_PARAM2, "Stadium");
-        startService(msgIntent);
+        Intent setStadium = new Intent(this, StadiumService.class);
+        setStadium.setAction(StadiumService.ACTION_STADIUM);
+        setStadium.putExtra(StadiumService.EXTRA_PARAM1, "Stadium service started");
+        setStadium.putExtra(StadiumService.EXTRA_PARAM2, "Stadium");
+        startService(setStadium);
+
+        Intent setPlayer = new Intent(this, StadiumService.class);
+        setPlayer.setAction(StadiumService.ACTION_PLAYER);
+        setPlayer.putExtra(StadiumService.EXTRA_PARAM1, "Player service started");
+        setPlayer.putExtra(StadiumService.EXTRA_PARAM2, "Player");
+        startService(setPlayer);
+
+        Intent setGame = new Intent(this, StadiumService.class);
+        setGame.setAction(StadiumService.ACTION_GAME);
+        setGame.putExtra(StadiumService.EXTRA_PARAM1, "Game service started");
+        setGame.putExtra(StadiumService.EXTRA_PARAM2, "Game");
+        startService(setGame);
     }
 
 

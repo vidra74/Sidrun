@@ -28,7 +28,7 @@ public class DBAdapter {
     static final String GAME_GOALS_TEAM2 = "gol2";
 
     static final String PLAYER_ROWID = "_id";
-    static final String PLAYER_TEAM = "tim";
+    static final String PLAYER_TEAM = "team";
     static final String PLAYER_NAME = "ime";
     static final String PLAYER_SURNAME = "prezime";
 
@@ -36,7 +36,7 @@ public class DBAdapter {
     static final String DATABASE_TABLE_STADIUM = "stadiums";
     static final String DATABASE_TABLE_GAME = "games";
     static final String DATABASE_TABLE_PLAYER = "players";
-    static final int DATABASE_VERSION = 1;
+    static final int DATABASE_VERSION = 3;
 
     static final String DATABASE_TABLE_STADIUM_CREATE = "create table stadiums (_id integer primary key autoincrement, " +
                                             "stadium text not null, " +
@@ -268,7 +268,7 @@ public class DBAdapter {
         gameValues.put(GAME_GOALS_TEAM1, goal1);
         gameValues.put(GAME_GOALS_TEAM2, goal2);
 
-        return db.insert(DATABASE_TABLE_STADIUM, null, gameValues);
+        return db.insert(DATABASE_TABLE_GAME, null, gameValues);
     }
 
     public boolean deleteGame(long gameId){
