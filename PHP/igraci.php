@@ -22,7 +22,7 @@
 		$row_array["ID"]=$row[0];
 		$row_array["PREZIME"]=$row["PREZIME"];
 		$row_array["IME"]=$row["IME"];
-		$row_array["TIM"]=$row["TIM_NAZIV "];
+		$row_array["TIM"]=$row["TIM_NAZIV"];
 		
 		array_push($return_arr,$row_array);
 		

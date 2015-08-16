@@ -28,7 +28,7 @@
 		$row_array["TIM1"]=$row["TIM1"];
 		$row_array["TIM2"]=$row["TIM2"];
 		$row_array["GOL1"]=$row["GOL_TIM1"];
-		$row_array["GOL2"]=$row["GOL_TIM2 "];
+		$row_array["GOL2"]=$row["GOL_TIM2"];
 		
 		array_push($return_arr,$row_array);
 		
