@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.danceplov.sidrun" >
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -45,6 +45,23 @@
             android:name=".service.StadiumService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".PlayerActivity"
+            android:label="@string/title_activity_player"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.danceplov.sidrun.MainActivity" />
+        </activity>
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/title_activity_game"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.danceplov.sidrun.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

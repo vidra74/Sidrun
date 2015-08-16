@@ -58,12 +58,13 @@ public class MainActivityFragment extends Fragment implements AbsListView.OnItem
         switch (position){
             case 0:
             {
-                Toast.makeText(getActivity(), "Utakmice", Toast.LENGTH_LONG).show();
-                break;
+                Intent playerListIntent = new Intent(getActivity(), PlayerActivity.class);
+                startActivity(playerListIntent);
             }
             case 1:
             {
-                Toast.makeText(getActivity(), "Rezultati", Toast.LENGTH_LONG).show();
+                Intent gameListIntent = new Intent(getActivity(), GameActivity.class);
+                startActivity(gameListIntent);
                 break;
             }
             case 2:

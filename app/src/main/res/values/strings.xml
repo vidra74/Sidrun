@@ -16,4 +16,7 @@
     <string name="main_select_teams">teams and players</string>
     <string name="main_select_stadium">stadiums and playgrounds</string>
     <string name="main_select_results">matches and results</string>
+    <string name="title_activity_player">PlayerActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_game">GameActivity</string>
 </resources>
