@@ -1,17 +1,34 @@
 package com.example.danceplov.sidrun;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class PlayerActivity extends ActionBarActivity {
+public class PlayerActivity extends ActionBarActivity
+        implements PlayerFragment.OnFragmentInteractionListener{
+
+    @Override
+    public void onFragmentInteraction(String id) {
+        // pokreni kasnije detail intent
+        ;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
+
+        FragmentManager fragMag = getSupportFragmentManager();
+        Fragment frag = fragMag.findFragmentById(R.id.fragment_player);
+
+        if (null == frag){
+            PlayerFragment slfrag = new PlayerFragment();
+            fragMag.beginTransaction().add(R.id.fragment_player, slfrag).commit();
+        }
     }
 
 

@@ -60,6 +60,7 @@ public class MainActivityFragment extends Fragment implements AbsListView.OnItem
             {
                 Intent playerListIntent = new Intent(getActivity(), PlayerActivity.class);
                 startActivity(playerListIntent);
+                break;
             }
             case 1:
             {
