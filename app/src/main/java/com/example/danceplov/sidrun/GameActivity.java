@@ -20,8 +20,8 @@ public class GameActivity extends ActionBarActivity
         Fragment frag = fragMag.findFragmentById(R.id.fragment_game);
 
         if (null == frag){
-            GameFragment slfrag = new GameFragment();
-            fragMag.beginTransaction().add(R.id.fragment_game, slfrag).commit();
+            GameFragment gfrag = new GameFragment();
+            fragMag.beginTransaction().add(R.id.fragment_game, gfrag).commit();
         }
 
     }

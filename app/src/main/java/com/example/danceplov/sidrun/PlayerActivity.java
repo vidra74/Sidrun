@@ -26,8 +26,8 @@ public class PlayerActivity extends ActionBarActivity
         Fragment frag = fragMag.findFragmentById(R.id.fragment_player);
 
         if (null == frag){
-            PlayerFragment slfrag = new PlayerFragment();
-            fragMag.beginTransaction().add(R.id.fragment_player, slfrag).commit();
+            PlayerFragment plfrag = new PlayerFragment();
+            fragMag.beginTransaction().add(R.id.fragment_player, plfrag).commit();
         }
     }
 
