@@ -62,7 +62,6 @@ public class PlayerObject {
 
         mTeam = "";
         mName = "";
-        
         mSurname = "";
         mId = UUID.randomUUID();
         mPlayerDBId = -1;
