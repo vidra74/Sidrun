@@ -1,6 +1,7 @@
 package com.example.danceplov.sidrun;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +11,12 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.example.danceplov.sidrun.dummy.DummyContent;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -29,6 +33,8 @@ public class PlayerFragment extends Fragment implements AbsListView.OnItemClickL
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String PARAM_UUID_PLAYER = "Player";
+    private static final String PARAM_ROW_ID_PLAYER = "RowID";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -45,7 +51,32 @@ public class PlayerFragment extends Fragment implements AbsListView.OnItemClickL
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private ListAdapter mAdapter;
+    // private ListAdapter mAdapter;
+    private PlayerAdapter stadiumAdapter;
+    private SimpleCursorAdapter curStadiumAdapter;
+    private DBAdapter dbAdapter;
+
+    private class PlayerAdapter extends ArrayAdapter<PlayerObject> {
+
+        public PlayerAdapter(ArrayList<PlayerObject> stadList){
+            super(getActivity(), 0, stadList);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (null == convertView){
+                convertView = getActivity().getLayoutInflater()
+                        .inflate(android.R.layout.simple_list_item_1, null);
+            }
+
+            PlayerObject play = getItem(position);
+            TextView tv = (TextView)convertView.findViewById(android.R.id.text1);
+            tv.setText(play.getmSurname() + " " + play.getmName());
+
+            return convertView;
+        }
+    }
 
     // TODO: Rename and change types of parameters
     public static PlayerFragment newInstance(String param1, String param2) {
@@ -74,8 +105,6 @@ public class PlayerFragment extends Fragment implements AbsListView.OnItemClickL
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
     }
 
     @Override
@@ -85,7 +114,32 @@ public class PlayerFragment extends Fragment implements AbsListView.OnItemClickL
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        StadiumObjectList.getsStadiumList(getActivity()).clearAllStadiums();
+
+        dbAdapter = new DBAdapter(getActivity());
+        dbAdapter.open();
+
+        ArrayList<PlayerObject> listaIgraca = new ArrayList<PlayerObject>();
+        Cursor myCursor = dbAdapter.getPlayersCursor();
+        myCursor.moveToFirst();
+        while (!myCursor.isAfterLast()) {
+            PlayerObject player = new PlayerObject(myCursor.getString(1),
+                    myCursor.getString(2),
+                    myCursor.getString(3),
+                    myCursor.getLong(0));
+            listaIgraca.add(player);
+            PlayerObjectList.getPlayersList(getActivity()).addPlayer(player.getmTeam(),
+                    player.getmName(),
+                    player.getmSurname(),
+                    player.getmPlayerDBId());
+            myCursor.moveToNext();
+        }
+        // make sure to close the cursor
+        myCursor.close();
+        dbAdapter.close();
+
+        // ((AdapterView<ListAdapter>) mListView).setAdapter(stadiumAdapter);
+        ((AdapterView<ListAdapter>) mListView).setAdapter(new PlayerAdapter(listaIgraca));
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
@@ -115,7 +169,9 @@ public class PlayerFragment extends Fragment implements AbsListView.OnItemClickL
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            // mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+
+            // pokreni detail
         }
     }
 
