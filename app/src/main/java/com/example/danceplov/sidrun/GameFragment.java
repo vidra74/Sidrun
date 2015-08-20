@@ -1,6 +1,7 @@
 package com.example.danceplov.sidrun;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +11,12 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.example.danceplov.sidrun.dummy.DummyContent;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -29,6 +33,8 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String PARAM_UUID_GAME = "Game";
+    private static final String PARAM_ROW_ID_UUID = "RowID";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -45,7 +51,32 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    private ListAdapter mAdapter;
+    // private ListAdapter mAdapter;
+    private GameAdapter stadiumAdapter;
+    private SimpleCursorAdapter curStadiumAdapter;
+    private DBAdapter dbAdapter;
+
+    private class GameAdapter extends ArrayAdapter<GameObject> {
+
+        public GameAdapter(ArrayList<GameObject> gameList){
+            super(getActivity(), 0, gameList);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if (null == convertView){
+                convertView = getActivity().getLayoutInflater()
+                        .inflate(android.R.layout.simple_list_item_1, null);
+            }
+
+            GameObject game = getItem(position);
+            TextView tv = (TextView)convertView.findViewById(android.R.id.text1);
+            tv.setText(game.toString());
+
+            return convertView;
+        }
+    }
 
     // TODO: Rename and change types of parameters
     public static GameFragment newInstance(String param1, String param2) {
@@ -74,8 +105,6 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
     }
 
     @Override
@@ -85,8 +114,33 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
+        dbAdapter = new DBAdapter(getActivity());
+        dbAdapter.open();
+
+        ArrayList<GameObject> listaUtakmica = new ArrayList<GameObject>();
+        Cursor myCursor = dbAdapter.getGamesCursor();
+        myCursor.moveToFirst();
+        while (!myCursor.isAfterLast()) {
+            GameObject game = new GameObject(myCursor.getString(1),
+                    myCursor.getString(2),
+                    myCursor.getString(3),
+                    myCursor.getDouble(4),
+                    myCursor.getDouble(5),
+                    myCursor.getLong(0));
+            listaUtakmica.add(game);
+            GameObjectList.getGamesList(getActivity()).addGame(game.getmTeam1Name(),
+                    game.getmTeam2Name(),
+                    game.getmStadium(),
+                    game.getmGoalTeam1(),
+                    game.getmGoalTeam2(),
+                    game.getmGameDBId());
+            myCursor.moveToNext();
+        }
+        // make sure to close the cursor
+        myCursor.close();
+        dbAdapter.close();
+        ((AdapterView<ListAdapter>) mListView).setAdapter(new GameAdapter(listaUtakmica));
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
 
@@ -115,7 +169,7 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            // mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
 
