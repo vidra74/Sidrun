@@ -23,11 +23,8 @@ public class MainActivity extends ActionBarActivity {
         DBAdapter dbStadium = new DBAdapter(this);
         dbStadium.open();
         dbStadium.deleteAllStadiums();
-        // dbStadium.insertStadium("Porporela", "Hrvatska", "Dubrovnik", "Porat bb", "Nose valovi po jugu", 0.0, 0.0);
-        // dbStadium.insertStadium("Porat", "Hrvatska", "Dubrovnik", "Porat bb", "Prljavo, makni barke", 0.0, 0.0);
-        // dbStadium.insertStadium("Kolorina", "Hrvatska", "Dubrovnik", "Od Tabakerije bb", "Hlad u 17, pazi kod juga", 0.0, 0.0);
-        // dbStadium.insertStadium("Dan�e", "Hrvatska", "Dubrovnik", "Don Frana Bulica bb", "Nose valovi po maestralu", 0.0, 0.0);
-
+        dbStadium.deleteAllGames();
+        dbStadium.deleteAllPlayers();
         dbStadium.close();
 
         Intent setStadium = new Intent(this, StadiumService.class);
