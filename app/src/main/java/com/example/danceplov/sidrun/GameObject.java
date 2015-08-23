@@ -92,6 +92,6 @@ public class GameObject {
     }
 
     public String toString() {
-        return getmTeam1Name() + " - " + getmTeam2Name() + "  " + getmGoalTeam1().toString() + ":" + getmGoalTeam2().toString();
+        return getmTeam1Name() + " - " + getmTeam2Name() + "  " + (getmGoalTeam1()).toString() + ":" + getmGoalTeam2().toString();
     }
 }

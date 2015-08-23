@@ -16,4 +16,6 @@
     <string name="main_select_teams">timovi i igrači</string>
     <string name="main_select_stadium">stadioni i tereni</string>
     <string name="main_select_results">utakmice i rezultati</string>
+    <string name="title_activity_player">Igrači</string>
+    <string name="title_activity_game">Utakmice i rezultati</string>
 </resources>
