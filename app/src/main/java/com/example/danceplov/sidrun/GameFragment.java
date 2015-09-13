@@ -14,8 +14,6 @@ import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import com.example.danceplov.sidrun.dummy.DummyContent;
-
 import java.util.ArrayList;
 
 /**
@@ -58,6 +56,9 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
 
     private class GameAdapter extends ArrayAdapter<GameObject> {
 
+        public final int VIEW_TYPE_BIG = 0;
+        public final int VIEW_TYPE_SMALL = 1;
+
         public GameAdapter(ArrayList<GameObject> gameList){
             super(getActivity(), 0, gameList);
         }
@@ -66,8 +67,21 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
         public View getView(int position, View convertView, ViewGroup parent) {
 
             if (null == convertView){
-                convertView = getActivity().getLayoutInflater()
-                        .inflate(android.R.layout.simple_list_item_1, null);
+
+                int ViewType = getItemViewType(position);
+
+                switch (ViewType){
+                    case VIEW_TYPE_SMALL: {
+                        convertView = getActivity().getLayoutInflater()
+                                .inflate(R.layout.game_list_small_item, null);
+                        break;
+                    }
+                    case VIEW_TYPE_BIG: {
+                        convertView = getActivity().getLayoutInflater()
+                                .inflate(R.layout.game_list_first_item, null);
+                        break;
+                    }
+                }
             }
 
             GameObject game = getItem(position);
@@ -75,6 +89,18 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
             tv.setText(game.toString());
 
             return convertView;
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            // return super.getItemViewType(position);
+            return (position == 0) ? VIEW_TYPE_BIG : VIEW_TYPE_SMALL;
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            // return super.getViewTypeCount();
+            return 2;
         }
     }
 
