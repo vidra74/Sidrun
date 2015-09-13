@@ -1,6 +1,7 @@
 package com.example.danceplov.sidrun;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -104,6 +106,33 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
         }
     }
 
+    private class GameCursorAdapter extends CursorAdapter {
+
+        public GameCursorAdapter(Context context, Cursor gamecursor){
+            // CursorAdapter(Context context, Cursor c)
+            super(context, gamecursor);
+        }
+
+        @Override
+        public View newView(Context context, Cursor cursor, ViewGroup parent) {
+            View convertView = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false);
+            return convertView;
+        }
+
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
+
+            String rezultat = cursor.getString(1) + " - " + cursor.getString(2) + "  " + cursor.getString(4) + ":" + cursor.getString(5);
+            TextView tv = (TextView)view.findViewById(android.R.id.text1);
+            tv.setText(rezultat);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return super.getView(position, convertView, parent);
+        }
+    }
+
     // TODO: Rename and change types of parameters
     public static GameFragment newInstance(String param1, String param2) {
         GameFragment fragment = new GameFragment();
@@ -163,10 +192,14 @@ public class GameFragment extends Fragment implements AbsListView.OnItemClickLis
                     game.getmGameDBId());
             myCursor.moveToNext();
         }
+        myCursor.moveToFirst();
+        //((AdapterView<ListAdapter>) mListView).setAdapter(new GameAdapter(listaUtakmica));
+        ((AdapterView<ListAdapter>) mListView).setAdapter(new GameCursorAdapter(getActivity(), myCursor));
+
         // make sure to close the cursor
-        myCursor.close();
+        // myCursor.close();
         dbAdapter.close();
-        ((AdapterView<ListAdapter>) mListView).setAdapter(new GameAdapter(listaUtakmica));
+
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
 
